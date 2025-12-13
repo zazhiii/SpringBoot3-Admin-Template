@@ -1,0 +1,22 @@
+package com.zazhi.springboot3admintemplate.pojo;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ *
+ * @author lixh
+ * @since 2025/9/9 11:46
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("user")
+public class User {
+    private Integer id;
+    private String username;
+    private String password;
+//    private LocalDateTime createTime;
+}
