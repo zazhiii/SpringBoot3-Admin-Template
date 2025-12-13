@@ -1,13 +1,12 @@
 package com.zazhi.springboot3admintemplate.pojo;
 
-import lombok.AllArgsConstructor;
+import com.alibaba.fastjson2.annotation.JSONField;
+import com.zazhi.springboot3admintemplate.pojo.entity.User;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -18,26 +17,28 @@ import java.util.Set;
  * @since 2025/9/9 12:00
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class LoginUserDetails implements UserDetails {
 
     private User user;
 
-    private Set<String> roles;
+    private List<String> permissions;
 
-    private Set<String> permissions;
+    public LoginUserDetails(User user, List<String> permissions) {
+        this.user = user;
+        this.permissions = permissions;
+    }
+
+    @JSONField(serialize = false)
+    private List<GrantedAuthority> authorityList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        roles.forEach(
-                role -> grantedAuthorities.add(new SimpleGrantedAuthority(role))
-        );
-        permissions.forEach(
-                permission -> grantedAuthorities.add(new SimpleGrantedAuthority(permission))
-        );
-        return grantedAuthorities;
+        if (authorityList != null) {
+            return authorityList;
+        }
+        return permissions.stream()
+                .map(SimpleGrantedAuthority::new)
+                .toList();
     }
 
     @Override

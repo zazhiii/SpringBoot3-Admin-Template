@@ -1,7 +1,7 @@
 package com.zazhi.springboot3admintemplate.service;
 
 
-import com.zazhi.springboot3admintemplate.pojo.LoginDTO;
+import com.zazhi.springboot3admintemplate.pojo.dto.LoginDTO;
 
 /**
  *

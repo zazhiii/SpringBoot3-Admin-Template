@@ -1,4 +1,4 @@
-package com.zazhi.springboot3admintemplate.pojo;
+package com.zazhi.springboot3admintemplate.pojo.dto;
 
 import lombok.Data;
 

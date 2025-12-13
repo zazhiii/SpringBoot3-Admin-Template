@@ -2,7 +2,7 @@ package com.zazhi.springboot3admintemplate.service.impl;
 
 
 import com.zazhi.springboot3admintemplate.constant.RedisKey;
-import com.zazhi.springboot3admintemplate.pojo.LoginDTO;
+import com.zazhi.springboot3admintemplate.pojo.dto.LoginDTO;
 import com.zazhi.springboot3admintemplate.pojo.LoginUserDetails;
 import com.zazhi.springboot3admintemplate.service.LoginService;
 import com.zazhi.springboot3admintemplate.utils.JwtUtil;

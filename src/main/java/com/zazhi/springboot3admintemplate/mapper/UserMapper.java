@@ -1,9 +1,10 @@
 package com.zazhi.springboot3admintemplate.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zazhi.springboot3admintemplate.pojo.RoleAndPermission;
-import com.zazhi.springboot3admintemplate.pojo.User;
+import com.zazhi.springboot3admintemplate.pojo.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  *
@@ -13,9 +14,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
     /**
-     * Get roles and permissions by user ID
+     * Get permissions by user ID
      * @param userId user ID
-     * @return roles and permissions
+     * @return permissions
      */
-    RoleAndPermission getRolesAndPermissions(Integer userId);
+    List<String> getPermissionsByUserId(Integer userId);
 }

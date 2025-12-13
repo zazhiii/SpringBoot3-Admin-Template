@@ -1,7 +1,7 @@
 package com.zazhi.springboot3admintemplate.handler;
 
 import com.alibaba.fastjson2.JSON;
-import com.zazhi.springboot3admintemplate.pojo.Result;
+import com.zazhi.springboot3admintemplate.pojo.result.Result;
 import com.zazhi.springboot3admintemplate.utils.WebUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

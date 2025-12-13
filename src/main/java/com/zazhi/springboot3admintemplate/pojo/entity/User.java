@@ -1,4 +1,4 @@
-package com.zazhi.springboot3admintemplate.pojo;
+package com.zazhi.springboot3admintemplate.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;

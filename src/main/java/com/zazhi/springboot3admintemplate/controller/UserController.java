@@ -1,6 +1,6 @@
 package com.zazhi.springboot3admintemplate.controller;
 
-import com.zazhi.springboot3admintemplate.pojo.LoginDTO;
+import com.zazhi.springboot3admintemplate.pojo.dto.LoginDTO;
 import com.zazhi.springboot3admintemplate.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
