@@ -1,6 +1,7 @@
 package com.zazhi.springboot3admintemplate.filter;
 
 import com.zazhi.springboot3admintemplate.constant.RedisKey;
+import com.zazhi.springboot3admintemplate.pojo.LoginUserDetails;
 import com.zazhi.springboot3admintemplate.utils.JwtUtil;
 import com.zazhi.springboot3admintemplate.utils.RedisUtil;
 import jakarta.servlet.FilterChain;
@@ -48,7 +49,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         // 校验redis中是否存在
         String key = RedisKey.format(RedisKey.LOGIN, userId);
-        UserDetails userDetails = redisUtil.getObject(key, UserDetails.class);
+        LoginUserDetails userDetails = redisUtil.getObject(key, LoginUserDetails.class);
         if(userDetails == null){
             throw new RuntimeException("用户未登录");
         }

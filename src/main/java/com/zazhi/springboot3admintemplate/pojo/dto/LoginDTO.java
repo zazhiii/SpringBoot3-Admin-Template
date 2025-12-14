@@ -1,5 +1,6 @@
 package com.zazhi.springboot3admintemplate.pojo.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -9,6 +10,8 @@ import lombok.Data;
  */
 @Data
 public class LoginDTO {
+    @Schema(description = "用户名", example = "admin", required = true)
     String username;
+    @Schema(description = "密码", example = "admin123", required = true)
     String password;
 }

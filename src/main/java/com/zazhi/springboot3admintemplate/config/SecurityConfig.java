@@ -92,12 +92,6 @@ public class SecurityConfig {
                 })
                 // 添加JWT过滤器
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
-                // 登出操作
-                .logout(logout -> logout
-                                .logoutUrl("/api/logout")
-//                        .addLogoutHandler()
-                                .logoutSuccessHandler((request, response, authentication) ->
-                                        SecurityContextHolder.clearContext()))
                 .build();
     }
 }

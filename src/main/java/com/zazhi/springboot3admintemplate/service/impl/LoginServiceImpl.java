@@ -7,6 +7,7 @@ import com.zazhi.springboot3admintemplate.pojo.LoginUserDetails;
 import com.zazhi.springboot3admintemplate.service.LoginService;
 import com.zazhi.springboot3admintemplate.utils.JwtUtil;
 import com.zazhi.springboot3admintemplate.utils.RedisUtil;
+import com.zazhi.springboot3admintemplate.utils.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,12 +46,12 @@ public class LoginServiceImpl implements LoginService {
         LoginUserDetails loginUserDetails = (LoginUserDetails) authentication.getPrincipal();
 
         // 生成jwt
-        Map<String, Object> map = new HashMap<>(2);
-        map.put("userId", loginUserDetails.getUser().getId());
+        Integer userId = loginUserDetails.getUser().getId();
+        Map<String, Object> map = Map.of("userId", userId);
         String jwtToken = JwtUtil.genToken(map);
 
         // 把完整的用户信息存入redis，userId作为key
-        String key = RedisKey.format(RedisKey.LOGIN, loginUserDetails);
+        String key = RedisKey.format(RedisKey.LOGIN, userId);
         redisUtil.setObject(key, loginUserDetails);
 
         return jwtToken;
@@ -58,9 +59,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public void logout() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        LoginUserDetails loginUserDetails = (LoginUserDetails) auth.getPrincipal();
-        Integer userId = loginUserDetails.getUser().getId();
-        redisUtil.delete(RedisKey.format(RedisKey.LOGIN, userId));
+        Integer currentUserId = SecurityUtil.getCurrentUserId();
+        redisUtil.delete(RedisKey.format(RedisKey.LOGIN, currentUserId));
     }
 }
