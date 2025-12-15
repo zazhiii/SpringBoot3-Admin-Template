@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -67,6 +68,7 @@ public class SecurityConfig {
         return http
                 //禁用csrf(防止跨站请求伪造攻击)
                 .csrf(CsrfConfigurer::disable)
+                .cors(Customizer.withDefaults())
                 // 设置白名单
                 .authorizeHttpRequests(
                         registry -> registry
